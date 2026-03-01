@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Language Lessons — Online ESL Tutoring</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --warm-cream: #FDF6EC;
+    --soft-peach: #F8E8D4;
+    --terracotta: #C4704B;
+    --terracotta-dark: #A85A38;
+    --deep-olive: #3D4A3E;
+    --sage: #7A9A7E;
+    --sage-light: #B8D4BA;
+    --charcoal: #2C2C2C;
+    --warm-white: #FFFDF9;
+    --gold-accent: #D4A853;
+    --text-body: #4A4A4A;
+    --text-muted: #7A7A7A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--warm-cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* ===== NAVIGATION ===== */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.4s ease;
+    background: transparent;
+  }
+
+  nav.scrolled {
+    background: rgba(253,246,236,0.95);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: var(--deep-olive);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-logo span { color: var(--terracotta); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-body);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--terracotta);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover::after { width: 100%; }
+  .nav-links a:hover { color: var(--terracotta); }
+
+  .nav-cta {
+    background: var(--terracotta) !important;
+    color: white !important;
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600 !important;
+    transition: all 0.3s !important;
+  }
+
+  .nav-cta:hover {
+    background: var(--terracotta-dark) !important;
+    transform: translateY(-1px);
+  }
+
+  .nav-cta::after { display: none !important; }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 5% 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, var(--sage-light) 0%, transparent 70%);
+    opacity: 0.3;
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--sage-light);
+    color: var(--deep-olive);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    animation: fadeDown 0.8s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-tag .dot {
+    width: 8px;
+    height: 8px;
+    background: var(--sage);
+    border-radius: 50%;
+    animation: pulse 2s ease infinite;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    color: var(--deep-olive);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+    opacity: 0;
+    letter-spacing: -0.02em;
+  }
+
+  h1 em {
+    color: var(--terracotta);
+    font-style: italic;
+  }
+
+  .hero-description {
+    font-size: 1.15rem;
+    color: var(--text-body);
+    margin-bottom: 2.5rem;
+    max-width: 480px;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+    opacity: 0;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+    opacity: 0;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--terracotta);
+    color: white;
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-family: 'Nunito', sans-serif;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-primary:hover {
+    background: var(--terracotta-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(196,112,75,0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--deep-olive);
+    padding: 1rem 2.5rem;
+    border: 2px solid var(--deep-olive);
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-family: 'Nunito', sans-serif;
+  }
+
+  .btn-secondary:hover {
+    background: var(--deep-olive);
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  /* Hero Visual */
+  .hero-visual {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 1s ease 0.5s forwards;
+    opacity: 0;
+  }
+
+  .hero-card {
+    background: var(--warm-white);
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    max-width: 400px;
+    width: 100%;
+    position: relative;
+  }
+
+  .hero-card::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 80px;
+    height: 80px;
+    background: var(--gold-accent);
+    border-radius: 50%;
+    opacity: 0.15;
+  }
+
+  .globe-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .hero-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    color: var(--deep-olive);
+    margin-bottom: 1rem;
+  }
+
+  .hero-card-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .hero-card-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--text-body);
+  }
+
+  .check-icon {
+    width: 24px;
+    height: 24px;
+    background: var(--sage-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--deep-olive);
+    font-size: 0.75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .floating-badge {
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    background: var(--terracotta);
+    color: white;
+    padding: 0.8rem 1.2rem;
+    border-radius: 16px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    box-shadow: 0 8px 20px rgba(196,112,75,0.3);
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* ===== ABOUT ===== */
+  .about {
+    padding: 6rem 5%;
+    background: var(--warm-white);
+    position: relative;
+  }
+
+  .about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--sage-light), var(--terracotta), var(--gold-accent));
+  }
+
+  .section-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: center;
+  }
+
+  .section-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--terracotta);
+    margin-bottom: 0.75rem;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    color: var(--deep-olive);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .about-text p {
+    color: var(--text-body);
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+    font-weight: 300;
+  }
+
+  .credentials {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .credential-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.2rem;
+    background: var(--warm-cream);
+    border-radius: 16px;
+    transition: transform 0.3s ease;
+  }
+
+  .credential-item:hover {
+    transform: translateX(5px);
+  }
+
+  .credential-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--sage-light);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+
+  .credential-info h4 {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--deep-olive);
+    margin-bottom: 0.2rem;
+  }
+
+  .credential-info p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  /* ===== SERVICES ===== */
+  .services {
+    padding: 6rem 5%;
+    background: var(--warm-cream);
+  }
+
+  .section-center {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .service-card {
+    background: var(--warm-white);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--terracotta);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+  }
+
+  .service-card:hover::after { transform: scaleX(1); }
+
+  .service-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+
+  .service-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--deep-olive);
+    margin-bottom: 0.75rem;
+  }
+
+  .service-card p {
+    color: var(--text-body);
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .service-tag {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--terracotta);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ===== HOW IT WORKS ===== */
+  .how-it-works {
+    padding: 6rem 5%;
+    background: var(--deep-olive);
+    color: white;
+    position: relative;
+  }
+
+  .how-it-works .section-label { color: var(--sage-light); }
+  .how-it-works h2 { color: white; }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .step {
+    text-align: center;
+    position: relative;
+  }
+
+  .step-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3.5rem;
+    color: var(--sage);
+    opacity: 0.4;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .step-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .step h3 {
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .step p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.65);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .step-connector {
+    display: none;
+  }
+
+  /* ===== PRICING ===== */
+  .pricing {
+    padding: 6rem 5%;
+    background: var(--warm-white);
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .price-card {
+    background: var(--warm-cream);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .price-card.featured {
+    border-color: var(--terracotta);
+    background: var(--warm-white);
+    transform: scale(1.05);
+    box-shadow: 0 20px 50px rgba(196,112,75,0.15);
+  }
+
+  .price-card:hover { transform: translateY(-4px); }
+  .price-card.featured:hover { transform: scale(1.05) translateY(-4px); }
+
+  .popular-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--terracotta);
+    color: white;
+    padding: 0.3rem 1rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .price-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--deep-olive);
+    margin-bottom: 0.5rem;
+  }
+
+  .price {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.8rem;
+    color: var(--terracotta);
+    margin: 1rem 0;
+    line-height: 1;
+  }
+
+  .price span {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .price-features {
+    list-style: none;
+    margin: 1.5rem 0 2rem;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .price-features li {
+    font-size: 0.9rem;
+    color: var(--text-body);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .price-features li::before {
+    content: '✓';
+    color: var(--sage);
+    font-weight: 700;
+  }
+
+  /* ===== TESTIMONIALS ===== */
+  .testimonials {
+    padding: 6rem 5%;
+    background: var(--warm-cream);
+  }
+
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .testimonial-card {
+    background: var(--warm-white);
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+  }
+
+  .quote-mark {
+    font-family: 'DM Serif Display', serif;
+    font-size: 4rem;
+    color: var(--sage-light);
+    line-height: 1;
+    margin-bottom: -0.5rem;
+  }
+
+  .testimonial-card p {
+    color: var(--text-body);
+    font-size: 0.95rem;
+    font-style: italic;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .author-avatar {
+    width: 44px;
+    height: 44px;
+    background: var(--sage-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+  }
+
+  .author-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--deep-olive);
+  }
+
+  .author-detail {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  /* ===== CTA ===== */
+  .cta {
+    padding: 6rem 5%;
+    background: linear-gradient(135deg, var(--deep-olive) 0%, #2D3B2E 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta::before {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--sage) 0%, transparent 70%);
+    opacity: 0.1;
+    top: -100px;
+    right: -100px;
+  }
+
+  .cta-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .cta h2 {
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .cta p {
+    color: rgba(255,255,255,0.7);
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .cta .btn-primary {
+    background: var(--terracotta);
+    font-size: 1.1rem;
+    padding: 1.1rem 3rem;
+  }
+
+  /* ===== CONTACT FORM ===== */
+  .contact-form-wrapper {
+    max-width: 460px;
+    margin: 2rem auto 0;
+    text-align: left;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    border: 2px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.08);
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    transition: border-color 0.3s;
+    outline: none;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: rgba(255,255,255,0.4);
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--sage-light);
+  }
+
+  .form-group textarea { resize: vertical; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    padding: 3rem 5%;
+    background: var(--charcoal);
+    text-align: center;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.85rem;
+  }
+
+  footer a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  footer a:hover { color: white; }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    list-style: none;
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* Scroll animations */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== MOBILE MENU ===== */
+  .mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  .mobile-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--charcoal);
+    margin: 5px 0;
+    transition: all 0.3s;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; text-align: center; padding-top: 7rem; }
+    .hero-content { max-width: 100%; }
+    .hero-description { max-width: 100%; margin-left: auto; margin-right: auto; }
+    .hero-buttons { justify-content: center; }
+    .hero-visual { margin-top: 3rem; }
+    .section-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+    .price-card.featured { transform: none; }
+    .price-card.featured:hover { transform: translateY(-4px); }
+    .testimonial-grid { grid-template-columns: 1fr; max-width: 500px; }
+
+    .mobile-toggle { display: block; }
+    .nav-links {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: var(--warm-white);
+      flex-direction: column;
+      padding: 5rem 2rem 2rem;
+      box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+      transition: right 0.3s ease;
+    }
+    .nav-links.open { right: 0; }
+  }
+
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; gap: 2rem; }
+    h1 { font-size: 2.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Speak<span>Bright</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Book a Lesson</a></li>
+  </ul>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-tag"><span class="dot"></span> Now accepting new students</div>
+    <h1>Learn English with Confidence &amp; <em>Clarity</em></h1>
+    <p class="hero-description">
+      Personalized online English lessons tailored to your goals — whether you're preparing for a new career, studying abroad, or building everyday conversation skills.
+    </p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary">Book a Free Consultation →</a>
+      <a href="#services" class="btn-secondary">Explore Lessons</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card">
+      <span class="globe-icon">🌍</span>
+      <h3>Online Lessons via Zoom</h3>
+      <ul class="hero-card-features">
+        <li><span class="check-icon">✓</span> One-on-one personalized sessions</li>
+        <li><span class="check-icon">✓</span> Flexible scheduling worldwide</li>
+        <li><span class="check-icon">✓</span> Certified ESL instructor</li>
+        <li><span class="check-icon">✓</span> All levels welcome</li>
+        <li><span class="check-icon">✓</span> Adaptive teaching methods</li>
+      </ul>
+      <div class="floating-badge">🎓 U of C Certified</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-grid">
+    <div class="reveal">
+      <div class="section-label">About Your Teacher</div>
+      <h2>Dedicated to Helping You Succeed</h2>
+      <div class="about-text">
+        <p>
+          With a strong academic foundation and a genuine passion for teaching, I bring a warm, patient, and adaptive approach to every lesson. My background in sociology gives me a deep understanding of cultural dynamics, while my training in adaptive education ensures every student gets the personalized support they need.
+        </p>
+        <p>
+          I hold a certificate in Teaching English as a Second Language from the University of Calgary, and I'm committed to creating a comfortable, encouraging learning environment where you can build confidence at your own pace.
+        </p>
+      </div>
+    </div>
+    <div class="credentials reveal">
+      <div class="credential-item">
+        <div class="credential-icon">🎓</div>
+        <div class="credential-info">
+          <h4>TESL Certificate</h4>
+          <p>University of Calgary — Teaching English as a Second Language</p>
+        </div>
+      </div>
+      <div class="credential-item">
+        <div class="credential-icon">📚</div>
+        <div class="credential-info">
+          <h4>Bachelor of Arts — Sociology</h4>
+          <p>Strong foundation in cultural awareness &amp; communication</p>
+        </div>
+      </div>
+      <div class="credential-item">
+        <div class="credential-icon">♿</div>
+        <div class="credential-info">
+          <h4>Adaptive Physical Education Diploma</h4>
+          <p>Specialized training in adaptive &amp; inclusive teaching methods</p>
+        </div>
+      </div>
+      <div class="credential-item">
+        <div class="credential-icon">💻</div>
+        <div class="credential-info">
+          <h4>Online Teaching via Zoom</h4>
+          <p>Learn from anywhere — all you need is an internet connection</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-center reveal">
+    <div class="section-label">What I Offer</div>
+    <h2>Lessons Tailored to Your Goals</h2>
+    <p style="color:var(--text-body); font-weight:300;">Every student is unique. I offer flexible lesson types designed to meet you exactly where you are.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-icon">💬</span>
+      <h3>Conversational English</h3>
+      <p>Build fluency and confidence for everyday conversations — from casual chats to professional settings.</p>
+      <span class="service-tag">All Levels</span>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">📝</span>
+      <h3>Grammar &amp; Writing</h3>
+      <p>Master English grammar, sentence structure, and writing skills for academic or professional purposes.</p>
+      <span class="service-tag">Beginner to Advanced</span>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🏢</span>
+      <h3>Business English</h3>
+      <p>Prepare for interviews, presentations, emails, and workplace communication with targeted practice.</p>
+      <span class="service-tag">Intermediate+</span>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🗣️</span>
+      <h3>Pronunciation Coaching</h3>
+      <p>Improve clarity, reduce accent challenges, and feel more confident when speaking aloud.</p>
+      <span class="service-tag">All Levels</span>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">📖</span>
+      <h3>Exam Preparation</h3>
+      <p>Focused preparation for IELTS, CELPIP, and other English proficiency assessments.</p>
+      <span class="service-tag">Test-Focused</span>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🌱</span>
+      <h3>Newcomer Support</h3>
+      <p>Practical English for daily life in Canada — banking, healthcare, shopping, and social situations.</p>
+      <span class="service-tag">Beginner Friendly</span>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="how-it-works">
+  <div class="section-center reveal">
+    <div class="section-label">How It Works</div>
+    <h2>Getting Started Is Easy</h2>
+  </div>
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-number">01</div>
+      <span class="step-icon">📩</span>
+      <h3>Reach Out</h3>
+      <p>Send me a message or book a free consultation to discuss your goals.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-number">02</div>
+      <span class="step-icon">🎯</span>
+      <h3>Set Your Goals</h3>
+      <p>Together we'll create a personalized learning plan tailored to your needs.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-number">03</div>
+      <span class="step-icon">📅</span>
+      <h3>Schedule Lessons</h3>
+      <p>Pick times that work for you. Flexible scheduling across all time zones.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-number">04</div>
+      <span class="step-icon">🚀</span>
+      <h3>Start Learning</h3>
+      <p>Join your Zoom lesson and start building confidence from day one.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-center reveal">
+    <div class="section-label">Investment in Yourself</div>
+    <h2>Simple, Transparent Pricing</h2>
+    <p style="color:var(--text-body); font-weight:300;">Choose the option that fits your learning journey.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card reveal">
+      <h3>Single Lesson</h3>
+      <div class="price">$45 <span>/ 60 min</span></div>
+      <ul class="price-features">
+        <li>One-on-one Zoom session</li>
+        <li>Customized lesson content</li>
+        <li>Session notes provided</li>
+        <li>No commitment required</li>
+      </ul>
+      <a href="#contact" class="btn-secondary" style="width:100%;text-align:center;display:block;">Get Started</a>
+    </div>
+    <div class="price-card featured reveal">
+      <div class="popular-badge">Most Popular</div>
+      <h3>5-Lesson Pack</h3>
+      <div class="price">$200 <span>/ 5 lessons</span></div>
+      <ul class="price-features">
+        <li>Save $25 on the package</li>
+        <li>Progress tracking included</li>
+        <li>Priority scheduling</li>
+        <li>Homework &amp; practice materials</li>
+      </ul>
+      <a href="#contact" class="btn-primary" style="width:100%;text-align:center;display:block;justify-content:center;">Book Package</a>
+    </div>
+    <div class="price-card reveal">
+      <h3>10-Lesson Pack</h3>
+      <div class="price">$375 <span>/ 10 lessons</span></div>
+      <ul class="price-features">
+        <li>Best value — save $75</li>
+        <li>Structured learning path</li>
+        <li>Weekly progress reviews</li>
+        <li>Email support between lessons</li>
+      </ul>
+      <a href="#contact" class="btn-secondary" style="width:100%;text-align:center;display:block;">Book Package</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-center reveal">
+    <div class="section-label">Student Stories</div>
+    <h2>What My Students Say</h2>
+  </div>
+  <div class="testimonial-grid">
+    <div class="testimonial-card reveal">
+      <div class="quote-mark">"</div>
+      <p>The lessons are always so well prepared and personalized. I went from barely holding a conversation to confidently presenting at work in just three months.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">🇧🇷</div>
+        <div>
+          <div class="author-name">Maria S.</div>
+          <div class="author-detail">Brazil → Canada</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="quote-mark">"</div>
+      <p>So patient and encouraging! I was nervous about online lessons but the Zoom setup made everything easy. I actually look forward to my weekly session now.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">🇰🇷</div>
+        <div>
+          <div class="author-name">Jin-ho K.</div>
+          <div class="author-detail">South Korea</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="quote-mark">"</div>
+      <p>The adaptive approach really works. My teacher noticed I learn better with visuals and adjusted everything. I passed my IELTS with a 7.5!</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">🇸🇦</div>
+        <div>
+          <div class="author-name">Fatima A.</div>
+          <div class="author-detail">Saudi Arabia</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / CONTACT FORM -->
+<section class="cta" id="contact">
+  <div class="cta-content reveal">
+    <div class="section-label" style="color: var(--sage-light);">Ready to Begin?</div>
+    <h2>Book Your Free Consultation</h2>
+    <p>Tell me a little about your goals and I'll get back to you within 24 hours to schedule a free introductory session.</p>
+    <div class="contact-form-wrapper">
+      <div class="form-group">
+        <input type="text" id="contactName" placeholder="Your name" required>
+      </div>
+      <div class="form-group">
+        <input type="email" id="contactEmail" placeholder="Your email address" required>
+      </div>
+      <div class="form-group">
+        <textarea id="contactMessage" rows="4" placeholder="Tell me about your English learning goals..."></textarea>
+      </div>
+      <button class="btn-primary" id="contactSubmit" style="width:100%; justify-content:center; font-size:1.05rem;">
+        Send Message →
+      </button>
+      <div id="formStatus" style="margin-top:1rem; font-size:0.95rem;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <p>&copy; 2026 SpeakBright English Tutoring. All rights reserved.</p>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Mobile menu toggle
+  const mobileToggle = document.getElementById('mobileToggle');
+  const navLinks = document.getElementById('navLinks');
+  mobileToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+
+  // Close mobile menu on link click
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  // Scroll reveal
+  const revealElements = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, index * 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  revealElements.forEach(el => observer.observe(el));
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+  // Contact form submission
+  const contactBtn = document.getElementById('contactSubmit');
+  const formStatus = document.getElementById('formStatus');
+
+  contactBtn.addEventListener('click', async () => {
+    const name = document.getElementById('contactName').value.trim();
+    const email = document.getElementById('contactEmail').value.trim();
+    const message = document.getElementById('contactMessage').value.trim();
+
+    if (!name || !email) {
+      formStatus.style.color = '#F8E8D4';
+      formStatus.textContent = 'Please enter your name and email.';
+      return;
+    }
+
+    contactBtn.disabled = true;
+    contactBtn.textContent = 'Sending...';
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message })
+      });
+      const data = await res.json();
+      formStatus.style.color = '#B8D4BA';
+      formStatus.textContent = data.message;
+      document.getElementById('contactName').value = '';
+      document.getElementById('contactEmail').value = '';
+      document.getElementById('contactMessage').value = '';
+    } catch (err) {
+      formStatus.style.color = '#F8E8D4';
+      formStatus.textContent = 'Something went wrong. Please try again.';
+    }
+
+    contactBtn.disabled = false;
+    contactBtn.textContent = 'Send Message →';
+  });
+</script>
+
+</body>
+</html>
